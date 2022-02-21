@@ -24,6 +24,9 @@ df <- utm_sf_outlet %>%
 df_coord <- df %>% 
   distinct(segment, X, Y)
 
+X <- df_coord$X
+Y <- df_coord$Y
+
 # read in the network
 strnet <- line2network(path="data_raw/watersheds/watershed1", 
                        layer="epsg3722_StrNet_ws1")
@@ -70,7 +73,7 @@ write.csv(site_dists,"data_raw/watersheds/watershed1\\siteXdist_ws1.csv", row.na
 # flow direction ----------------------------------------------------------
 
 # Mouth of network must be specified, get seg and vert from cleanup() above
-setmouth(seg=213, vert=992, rivers=strnet_fixed)
+setmouth(seg=37, vert=5, rivers=strnet_fixed)
 
 # net = TRUE subtarcts downstream movement from upstream 
 updmat <- upstreammat(seg = site_strnet$seg, vert = site_strnet$vert, 
